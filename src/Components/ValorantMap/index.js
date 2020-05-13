@@ -29,14 +29,17 @@ export const ValorantMap = ({ mapSrc, callsSrc}) => {
           <MapImages>
             <MapImage src={ mapSrc } alt='haven map' />
             <MapImage src={ callsSrc } alt='haven calls' />
-            { markers.map((marker, index) => 
-              <MapMarker
-                key={ index }
-                src={ smokeImage } 
-                alt='smoke'
-                x={ marker.x } 
-                y={ marker.y }/>)}
           </MapImages>
+          { markers.map((marker, index) => 
+            <MapMarker
+              onClick={ () => {
+                                console.log('x:', marker.x)
+                                console.log('y:', marker.y)
+                              }}
+              key={ index }
+              src={ smokeImage } 
+              x={ marker.x } 
+              y={ marker.y }/>)}
         </TransformComponent>
       </MapContainer>
     </TransformWrapper>

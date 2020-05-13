@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const MapContainer = styled.div`
+  position: relative;
   width: 750px;
   margin: 0 auto;
   border: 2px solid black;
@@ -25,15 +26,16 @@ export const MapImage = styled.img`
   src: ${ props => props.src};
 `
 
-export const MapMarker = styled.img`
+export const MapMarker = styled.button`
   position: absolute;
   transform: translate(-50%, -50%);
   top: ${ props => props.y}px;
   left: ${ props => props.x}px;
-  src: ${ props => props.src};
-  color: rgba(42,200,73,0.2);
-  z-index: 999;
+  border:none;
+  width:25px;
+  height:25px;
+  background: url(${props => props.src}) no-repeat;
   :hover {
-    cursor: default;
+    cursor: pointer;
   }
 `
