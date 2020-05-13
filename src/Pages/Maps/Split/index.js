@@ -2,16 +2,15 @@ import React from 'react'
 
 import splitMap from './images/split-map.svg'
 import splitCalls from './images/split-calls.svg'
-import { MapContainer, MapImage } from '../style'
+
+import ValorantMap from 'Components/ValorantMap'
+import { Title } from '../style'
 
 export const Split = (props) => {
   return (
     <div>
-      <h1>Split</h1>
-      <MapContainer>
-        <MapImage src={ splitMap } alt='split map' />
-        <MapImage src={ splitCalls } alt='split calls' />
-      </MapContainer>
+      <Title>Split</Title>
+      <ValorantMap mapSrc={ splitMap } callsSrc={ splitCalls } />
     </div>
   )
 }
