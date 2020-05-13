@@ -2,44 +2,75 @@ import React, { useState } from 'react'
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 import smokeImage from './images/smoke.svg'
+import wallImage from './images/wall.svg'
 
-import { MapImages, MapImage, MapContainer, MapMarker } from './style'
+import { MapImages, MapImage, MapContainer, SmokeMarker, WallMarker } from './style'
 
 export const ValorantMap = ({ mapSrc, callsSrc}) => {
-  const [markers, setMarkers] = useState([])
-  const [addingSmoke, setAddingSmoke] = useState(false)
+  const [walls, setWalls] = useState([])
+  const [smokes, setSmokes] = useState([])
+  const [addingMarker, setAddingMarker] = useState('')
 
   const handleMapClick = (e) => {
-    if (addingSmoke) {
-      setMarkers(markers.concat({
-                                  x: e.nativeEvent.offsetX,
-                                  y: e.nativeEvent.offsetY
-                                }))
-      setAddingSmoke(false)                          
+    switch (addingMarker) {
+      case 'smoke':
+          setSmokes(smokes.concat({
+            x: e.nativeEvent.offsetX,
+            y: e.nativeEvent.offsetY
+          }))
+          break
+      case 'wall':
+          setWalls(walls.concat({
+            x: e.nativeEvent.offsetX,
+            y: e.nativeEvent.offsetY
+          }))
+          return
+      default:
+          return
+    }
+    setAddingMarker('') 
+  }
+
+  const handleMapUpClick = (e) => {
+    console.log(e.nativeEvent.offsetY)
+    if (addingMarker === 'wall') {
+      //Find angle between downclick and upclick
     }
   }
 
   return (
     <TransformWrapper>
       <MapContainer 
-        onClick={ handleMapClick } 
-        addingSmoke={ addingSmoke }>
-        <button onClick={() => setAddingSmoke(true)}>Add Smoke</button>
+        onMouseDown={ handleMapClick } 
+        onMouseUp={ handleMapUpClick } 
+        addingMarker={ addingMarker }>
+        <button onClick={() => setAddingMarker('smoke')}>Add Smoke</button>
+        <button onClick={() => setAddingMarker('wall')}>Add Wall</button>
         <TransformComponent>
           <MapImages>
             <MapImage src={ mapSrc } alt='haven map' />
             <MapImage src={ callsSrc } alt='haven calls' />
           </MapImages>
-          { markers.map((marker, index) => 
-            <MapMarker
+          { smokes.map((smoke, index) => 
+            <SmokeMarker
               onClick={ () => {
-                                console.log('x:', marker.x)
-                                console.log('y:', marker.y)
+                                console.log('x:', smoke.x)
+                                console.log('y:', smoke.y)
                               }}
               key={ index }
               src={ smokeImage } 
-              x={ marker.x } 
-              y={ marker.y }/>)}
+              x={ smoke.x } 
+              y={ smoke.y }/>)}
+          { walls.map((wall, index) => 
+            <WallMarker
+              onClick={ () => {
+                                console.log('x:', wall.x)
+                                console.log('y:', wall.y)
+                              }}
+              key={ index }
+              src={ wallImage } 
+              x={ wall.x } 
+              y={ wall.y }/>)}
         </TransformComponent>
       </MapContainer>
     </TransformWrapper>

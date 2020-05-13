@@ -6,7 +6,7 @@ export const MapContainer = styled.div`
   margin: 0 auto;
   border: 2px solid black;
   background-color: darkgray;
-  cursor: ${props => props.addingSmoke ? 'crosshair' : 'grab'};
+  cursor: ${props => props.addingMarker ? 'crosshair' : 'grab'};
   :active {
     cursor: grabbing;
   }
@@ -26,7 +26,7 @@ export const MapImage = styled.img`
   src: ${ props => props.src};
 `
 
-export const MapMarker = styled.button`
+export const SmokeMarker = styled.button`
   position: absolute;
   transform: translate(-50%, -50%);
   top: ${ props => props.y}px;
@@ -34,6 +34,21 @@ export const MapMarker = styled.button`
   border:none;
   width:25px;
   height:25px;
+  background: url(${props => props.src}) no-repeat;
+  :hover {
+    cursor: pointer;
+  }
+`
+
+export const WallMarker = styled.button`
+  position: absolute;
+  transform: rotate(30deg);
+  transform-origin: center left;
+  top: ${ props => props.y}px;
+  left: ${ props => props.x}px;
+  border:none;
+  width:250px;
+  height:5px;
   background: url(${props => props.src}) no-repeat;
   :hover {
     cursor: pointer;
