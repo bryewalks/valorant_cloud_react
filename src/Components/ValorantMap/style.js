@@ -42,7 +42,7 @@ export const SmokeMarker = styled.button`
 
 export const WallMarker = styled.button`
   position: absolute;
-  transform: rotate(30deg);
+  transform: ${props => `rotate(${props.angle}deg)`};
   transform-origin: center left;
   top: ${ props => props.y}px;
   left: ${ props => props.x}px;
