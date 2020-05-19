@@ -10,7 +10,7 @@ export const Split = (props) => {
   return (
     <div>
       <Title>Split</Title>
-      <ValorantMap mapSrc={ splitMap } callsSrc={ splitCalls } />
+      <ValorantMap mapSrc={ splitMap } callsSrc={ splitCalls } mapId={ 3 }/>
     </div>
   )
 }

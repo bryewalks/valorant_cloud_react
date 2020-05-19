@@ -10,7 +10,7 @@ export const Bind = (props) => {
   return (
     <div>
       <Title>Bind</Title>
-      <ValorantMap mapSrc={ bindMap } callsSrc={ bindCalls } />
+      <ValorantMap mapSrc={ bindMap } callsSrc={ bindCalls } mapId={ 1 } />
     </div>
   )
 }
