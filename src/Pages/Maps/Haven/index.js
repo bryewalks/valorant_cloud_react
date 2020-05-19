@@ -10,7 +10,7 @@ export const Haven = (props) => {
   return (
     <div>
       <Title>Haven</Title>
-      <ValorantMap mapSrc={ havenMap } callsSrc={ havenCalls } />
+      <ValorantMap mapSrc={ havenMap } callsSrc={ havenCalls } mapId={ 2 } />
     </div>
   )
 }
