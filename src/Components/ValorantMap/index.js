@@ -4,6 +4,8 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 import smokeImage from './images/smoke.svg'
 import wallImage from './images/wall.svg'
+import MarkerInfo from 'Components/MarkerInfo'
+import MarkerForm from 'Components/MarkerForm'
 
 import { MapImages, MapImage, MapContainer, SmokeMarker, WallMarker } from './style'
 
@@ -11,6 +13,8 @@ export const ValorantMap = ({ mapId, mapSrc, callsSrc}) => {
   const [markers, setMarkers] =  useState([])
   const [addingMarker, setAddingMarker] = useState('')
   const [wallStart, setWallStart] = useState({})
+  const [selectedMarker, setSelectedMarker] = useState({})
+  const [showingMarkerInfo, setShowingMarkerInfo] = useState(false)
 
   useEffect(() => {
     axios
@@ -70,6 +74,11 @@ export const ValorantMap = ({ mapId, mapSrc, callsSrc}) => {
     setAddingMarker('') 
   }
 
+  const handleMarkerClick = (marker) => {
+    setSelectedMarker(marker)
+    setShowingMarkerInfo(true)
+  }
+
   const findAngle = (sx, sy, ex, ey) => {
     let dy = ey - sy
     let dx = ex - sx
@@ -80,6 +89,8 @@ export const ValorantMap = ({ mapId, mapSrc, callsSrc}) => {
 
   return (
     <TransformWrapper>
+      <MarkerInfo marker={ selectedMarker } hidden={ !showingMarkerInfo } close={ () => setShowingMarkerInfo(false) } />
+      <MarkerForm hidden={ !addingMarker } />
       <MapContainer 
         onMouseDown={ handleMapClick }
         addingMarker={ addingMarker }>
@@ -93,19 +104,13 @@ export const ValorantMap = ({ mapId, mapSrc, callsSrc}) => {
           { markers.map((marker, index) =>
             marker.location_type === 'smoke' ?
             <SmokeMarker
-              onClick={ () => {
-                                console.log('x:', marker.x_axis)
-                                console.log('y:', marker.y_axis)
-                              }}
+              onClick={ () => handleMarkerClick(marker)}
               key={ index }
               src={ smokeImage } 
               x={ marker.x_axis } 
               y={ marker.y_axis }/> :
             <WallMarker
-              onClick={ () => {
-                                console.log('x:', marker.x_axis)
-                                console.log('y:', marker.y_axis)
-                              }}
+              onClick={ () => handleMarkerClick(marker)}
               key={ index }
               src={ wallImage } 
               x={ marker.x_axis } 
