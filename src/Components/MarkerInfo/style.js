@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 export const InfoWrapper = styled.div`
   position: absolute;
@@ -7,7 +7,11 @@ export const InfoWrapper = styled.div`
 
 export const InfoContainer = styled.div`
   width: 750px;
-  height: 775px;
-  margin: 0 25px;
+  height: 90vh;
+  transform: translate(-750px);
   background-color: white;
+  transition: transform 1s ease-out;
+  ${props => props.expanded && css`
+    transform: translate(0px);
+  `}
 `
