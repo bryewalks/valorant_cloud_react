@@ -89,8 +89,8 @@ export const ValorantMap = ({ mapId, mapSrc, callsSrc}) => {
 
   return (
     <TransformWrapper>
-      <MarkerInfo marker={ selectedMarker } hidden={ !showingMarkerInfo } close={ () => setShowingMarkerInfo(false) } />
-      <MarkerForm hidden={ !addingMarker } />
+      <MarkerInfo marker={ selectedMarker } expanded={ showingMarkerInfo } close={ () => setShowingMarkerInfo(false) } />
+      <MarkerForm expanded={ addingMarker } close={ () => setAddingMarker('') } />
       <MapContainer 
         onMouseDown={ handleMapClick }
         addingMarker={ addingMarker }>

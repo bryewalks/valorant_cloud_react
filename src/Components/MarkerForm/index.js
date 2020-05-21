@@ -1,11 +1,12 @@
 import React from 'react'
 import { FormContainer, FormWrapper } from './style'
 
-export const MarkerForm = ({ hidden, xAxis, yAxis }) => {
+export const MarkerForm = ({ close, expanded, xAxis, yAxis }) => {
   return (
-    <FormWrapper hidden={ hidden }>
-      <FormContainer>
-        xAxis
+    <FormWrapper>
+      <FormContainer expanded={ expanded }>
+        <h1>axis</h1>
+        <button onClick={ close }>Close</button>
       </FormContainer>
     </FormWrapper>
   )
