@@ -8,13 +8,13 @@ export const FormWrapper = styled.div`
 `
 
 export const FormContainer = styled.div`
-  width: 750px;
+  width: 0px;
   height: 90vh;
-  /* float: right; */
   background-color: white;
   transform: translate(750px);
   transition: transform 1s ease-out;
   ${props => props.expanded && css`
+    width: 750px;
     transform: translate(0px);
   `}
 `
