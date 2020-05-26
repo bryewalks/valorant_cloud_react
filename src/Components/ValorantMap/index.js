@@ -5,9 +5,18 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import smokeImage from './images/smoke.svg'
 import wallImage from './images/wall.svg'
 import MarkerInfo from 'Components/MarkerInfo'
+import MarkerList from 'Components/MarkerList'
 import MarkerForm from 'Components/MarkerForm'
 
 import { MapImages, MapImage, MapContainer, SmokeMarker, WallMarker } from './style'
+
+const findAngle = (sx, sy, ex, ey) => {
+  let dy = ey - sy
+  let dx = ex - sx
+  let theta = Math.atan2(dy, dx)
+  theta *= 180 / Math.PI
+  return theta
+}
 
 export const ValorantMap = ({ mapId, mapSrc, callsSrc}) => {
   const [markers, setMarkers] =  useState([])
@@ -33,6 +42,15 @@ export const ValorantMap = ({ mapId, mapSrc, callsSrc}) => {
       .then(response => {
         setMarkers(markers.concat(response.data))
       })
+      .catch((error) => {
+        console.error(error)
+    });
+  }
+
+  const removeMarker = (location) => {
+    axios
+      .delete(`/api/locations/${ location.id }`)
+      .then(response => setMarkers(markers.filter(marker => marker.id !== location.id)))
       .catch((error) => {
         console.error(error)
     });
@@ -79,14 +97,6 @@ export const ValorantMap = ({ mapId, mapSrc, callsSrc}) => {
     setShowingMarkerInfo(true)
   }
 
-  const findAngle = (sx, sy, ex, ey) => {
-    let dy = ey - sy
-    let dx = ex - sx
-    let theta = Math.atan2(dy, dx)
-    theta *= 180 / Math.PI
-    return theta
-  }
-
   return (
     <TransformWrapper>
       <MarkerInfo marker={ selectedMarker } expanded={ showingMarkerInfo } close={ () => setShowingMarkerInfo(false) } />
@@ -128,6 +138,7 @@ export const ValorantMap = ({ mapId, mapSrc, callsSrc}) => {
           }
         </TransformComponent>
       </MapContainer>
+      <MarkerList markers={ markers } markerClick={ handleMarkerClick } removeMarker={ removeMarker } selectedMarker={ selectedMarker } />
     </TransformWrapper>
   )
 }

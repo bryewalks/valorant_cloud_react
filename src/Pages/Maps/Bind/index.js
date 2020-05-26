@@ -7,6 +7,8 @@ import ValorantMap from 'Components/ValorantMap'
 import { ButtonContainer, Title } from '../style'
 
 export const Bind = ({ history }) => {
+  const bindMapId = 1
+
   return (
     <div>
       <Title>Bind</Title>
@@ -14,7 +16,7 @@ export const Bind = ({ history }) => {
         <button onClick={ () => history.push('/haven')}>Haven</button>
         <button onClick={ () => history.push('/split')}>Split</button>
       </ButtonContainer>
-      <ValorantMap mapSrc={ bindMap } callsSrc={ bindCalls } mapId={ 1 } />
+      <ValorantMap mapSrc={ bindMap } callsSrc={ bindCalls } mapId={ bindMapId } />
     </div>
   )
 }
