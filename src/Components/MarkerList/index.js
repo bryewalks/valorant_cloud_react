@@ -1,21 +1,27 @@
 import React from 'react'
 
-import { MarkersContainer, MarkerListItem, RemoveButton } from './style'
+import { MarkersContainer, MarkersTable, MarkerRow } from './style'
 
 export const MarkerList = ({ markers, markerClick, selectedMarker, removeMarker }) => {
-  console.log(markers)
   return (
     <MarkersContainer>
+      <MarkersTable>
+        <tr>
+          <th>Type</th>
+          <th>Title</th>
+          <th>Delete</th>
+        </tr>
       { markers.map((marker, index) =>
-          <MarkerListItem key={ index } 
-                          onClick={ () => markerClick(marker) } 
-                          selected={ marker.id === selectedMarker.id }>
-                          { marker.location_type }
-            <RemoveButton onClick={ (event) => {event.stopPropagation()
-                                                removeMarker(marker)
-                                                }}>Delete</RemoveButton>
-          </MarkerListItem>
+        <MarkerRow key={ index } 
+            onClick={ () => markerClick(marker) } 
+            selected={ marker.id === selectedMarker.id }>
+          <td>{ marker.location_type }</td>
+          <td>{ marker.title }</td>
+          <td onClick={ (event) => {event.stopPropagation()
+                                    removeMarker(marker)}}>x</td>
+        </MarkerRow>
       )}
+      </MarkersTable>
     </MarkersContainer>
   )
 }
