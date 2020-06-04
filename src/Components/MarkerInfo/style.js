@@ -8,6 +8,7 @@ export const InfoWrapper = styled.div`
 export const InfoContainer = styled.div`
   width: 0px;
   height: 75vh;
+  border-radius: 0 20px 20px 0;
   transform: translate(-750px);
   background-color: white;
   transition: transform 1s ease-out;
