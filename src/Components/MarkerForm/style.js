@@ -10,6 +10,7 @@ export const FormWrapper = styled.div`
 export const FormContainer = styled.div`
   width: 0px;
   height: 75vh;
+  border-radius: 20px 0 0 20px;
   background-color: white;
   transform: translate(750px);
   transition: transform 1s ease-out;
