@@ -32,12 +32,10 @@ export const SearchButton = styled.div`
 `
 
 export const SearchForm = styled.div`
-  width: 60%;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
 `
 
 export const SearchWrapper = styled.div`
@@ -49,4 +47,13 @@ export const SearchWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`
+
+export const SearchFormImage = styled.img`
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: 0 0;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 `
