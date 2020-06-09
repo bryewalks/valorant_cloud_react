@@ -1,10 +1,13 @@
-import React from 'react';
+import React from 'react'
 import Routes from 'Routes'
 
+import NavBar from 'Components/NavBar'
+
 export const App = (props) => {
-  console.log(props)
+
   return (
     <>
+      <NavBar />
       <Routes />
     </>
   )

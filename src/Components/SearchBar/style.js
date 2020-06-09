@@ -23,6 +23,8 @@ export const SearchButton = styled.div`
 export const SearchContainer = styled.div`
   width: ${ props => props.width ? props.width : '500px'};
   display: flex;
+  margin: 5px;
+  margin-left: auto;
 `
 
 export const SearchInput = styled.input`
